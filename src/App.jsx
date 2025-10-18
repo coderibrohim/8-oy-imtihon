@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import React, { useEffect } from "react";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import MainLayout from "./layout/MainLayout";
+import Home from "./pages/Home";
+import ProtectRoutes from "./components/ProtectRoutes";
+import { useDispatch, useSelector } from "react-redux";
+import { action as SignUpAction } from "./pages/SignUp";
+import { action as LoginAction } from "./pages/Login";
+import { onAuthStateChanged } from "firebase/auth";
+import { isAuthReady, login } from "./app/features/userSlice";
+import { auth } from "./firebase/config";
+import CreateRecipe from "./pages/CreateRecipe";
+import RecipeDetails from "./pages/RecipeDetails";
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const { user, authReady } = useSelector((store) => store.user);
+  const routes = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <ProtectRoutes user={user}>
+          <MainLayout />
+        </ProtectRoutes>
+      ),
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/create",
+          element: <CreateRecipe/>,
+        },
+        {
+          path:"/recipe/:id",
+          element:<RecipeDetails/>
+        }
+      ],
+    },
+    {
+      path: "/login",
+      element: user ? <Navigate to="/" /> : <Login />,
+      action: LoginAction,
+    },
+    {
+      path: "/signup",
+      element: user ? <Navigate to="/" /> : <SignUp />,
+      action: SignUpAction,
+    },
+  ]);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if(user?.displayName){
+        dispatch(login(user));
+      }
+      dispatch(isAuthReady());
+    });
+  }, []);
+
+  return <>{authReady && <RouterProvider router={routes} />}</>;
 }
 
-export default App
+export default App;
