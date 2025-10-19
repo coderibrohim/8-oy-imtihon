@@ -1,5 +1,5 @@
 import { Form, Link, useActionData } from "react-router-dom";
-import FormInput from "../components/Forminput";
+import FormInput from "../components/FormInput";
 import { useSignUp } from "../hooks/useSignUp";
 import { useEffect, useState } from "react";
 import { formError } from "../components/Errorld";

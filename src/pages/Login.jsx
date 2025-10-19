@@ -1,6 +1,6 @@
 import { Form, Link, useActionData } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import FormInput from "../components/Forminput";
+import FormInput from "../components/FormInput";
 import { useLogin } from "../hooks/useLogin";
 import { formError } from "../components/Errorld";
 export async function action({ request }) {
