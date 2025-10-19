@@ -23,28 +23,30 @@
 .animate-slideIn {
   animation: slideIn 3s ease-in-out forwards;
 }
-/* Light default */
+
+Light default
 body {
   background-color: #f4f4f4;
-  color: #1f1f1f;
+  color: white;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Dark mode */
-body.dark-mode {
+
+ body.dark-mode {
   background-color: #1f1f1f;
   color: #f4f4f4;
-}
+} 
 
-/* ixtiyoriy — card, input, button uchun dark style */
-.dark-mode .card {
+ .dark-mode .card {
   background-color: #2d2d2d !important;
   color: #f4f4f4 !important;
-}
+} 
 
-.dark-mode input,
 .dark-mode textarea {
   background-color: #3b3b3b !important;
   color: #f4f4f4 !important;
   border-color: #555 !important;
-}
+} 
+
+
+

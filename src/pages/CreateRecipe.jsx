@@ -50,131 +50,190 @@ function CreateRecipe() {
   };
 
   const handlePreview = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-300 to-gray-500 relative overflow-hidden">
-      <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] rounded-full bg-gradient-to-r from-gray-200 to-gray-400 blur-3xl opacity-50"></div>
-      <div className="absolute bottom-[-120px] right-[-100px] w-[350px] h-[350px] rounded-full bg-gradient-to-r from-gray-200 to-gray-400 blur-3xl opacity-50"></div>
+    <div
+      className="min-h-screen flex items-center justify-center 
+      bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1470&q=80')] 
+      bg-cover bg-center bg-no-repeat relative"
+    >
+      {/* Overlay gradient for better readability */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-      <div className="relative mt-20 z-10 bg-gray-200/70 backdrop-blur-md p-8 rounded-lg shadow-xl w-full max-w-md">
-        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
-          Add New Recipe
+      <div className=" mt-20 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/40">
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 tracking-wide">
+          🍳 Add New Recipe
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Title */}
           <div>
-            <label className="block mb-1 font-semibold">Title:</label>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
+              Title
+            </label>
             <input
               type="text"
               placeholder="Enter meal name"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="input input-bordered w-full"
+              className="w-full rounded-lg text-white border border-gray-300 px-4 py-2 focus:ring-2  outline-none"
             />
           </div>
 
+          {/* Cook time */}
           <div>
-            <label className="block mb-1 font-semibold">Cooking Time:</label>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
+              Cooking Time
+            </label>
             <input
               type="text"
               placeholder="Enter preparation time"
               value={cookTime}
               onChange={(e) => setCookTime(e.target.value)}
-              className="input input-bordered w-full"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 text-white outline-none"
             />
           </div>
 
+          {/* Ingredients */}
           <div>
-            <label className="block mb-1 font-semibold">Ingredients:</label>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
+              Ingredients
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
                 placeholder="Enter ingredient"
                 value={ingredient}
                 onChange={(e) => setIngredient(e.target.value)}
-                className="input input-bordered w-full"
+                className="flex-1 text-white rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 outline-none"
               />
               <button
                 type="button"
                 onClick={handleAddIngredient}
-                className="btn btn-primary"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
               >
                 +
               </button>
             </div>
-            <div className="mt-2 flex flex-wrap gap-1">
+
+            {/* Ingredient list */}
+            <div className="mt-3 flex flex-wrap gap-2">
               {ingredients.length ? (
                 ingredients.map((e, i) => (
-                  <span key={i} className="badge badge-outline">
+                  <span
+                    key={i}
+                    className="flex items-center gap-1 bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
+                  >
                     {e}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setIngredients(
+                          ingredients.filter((_, index) => index !== i)
+                        )
+                      }
+                      className="text-red-500 hover:text-red-700 font-bold ml-1"
+                    >
+                      ×
+                    </button>
                   </span>
                 ))
               ) : (
-                <span className="badge badge-outline">No ingredients yet</span>
+                <span className="text-gray-400 text-sm italic">
+                  No ingredients yet
+                </span>
               )}
             </div>
           </div>
 
+          {/* Images */}
           <div>
-            <label className="block mb-1 font-semibold">Image URL:</label>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
+              Image URLs
+            </label>
             <div className="flex gap-2">
               <input
                 type="text"
                 placeholder="Enter image URL"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-                className="input input-bordered w-full"
+                className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 text-white outline-none"
               />
               <button
                 type="button"
                 onClick={handleAddImage}
-                className="btn btn-primary"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
               >
                 +
               </button>
             </div>
-            <div className="mt-2 flex flex-wrap gap-1">
+
+            {/* Image list */}
+            <div className="mt-3 flex flex-wrap gap-2">
               {images.length ? (
                 images.map((img, i) => (
-                  <span key={i} className="badge badge-outline">
+                  <span
+                    key={i}
+                    className="flex items-center gap-1 bg-yellow-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium shadow-sm"
+                  >
                     Image {i + 1}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setImages(images.filter((_, index) => index !== i))
+                      }
+                      className="text-red-500 hover:text-red-700 font-bold ml-1"
+                    >
+                      ×
+                    </button>
                   </span>
                 ))
               ) : (
-                <span className="badge badge-outline">No images yet</span>
+                <span className="text-gray-400 text-sm italic">
+                  No images yet
+                </span>
               )}
             </div>
           </div>
 
+          {/* Method */}
           <div>
-            <label className="block mb-1 font-semibold">Method:</label>
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
+              Method
+            </label>
             <textarea
               value={method}
               onChange={(e) => setMethod(e.target.value)}
-              className="textarea textarea-bordered w-full"
-              placeholder="Enter method of meal"
+              placeholder="Describe how to cook the meal..."
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 text-white outline-none"
             />
           </div>
 
+          {/* Buttons */}
           <div className="flex gap-3">
-            {!isPending && (
+            {!isPending ? (
               <>
-                <button type="submit" className="btn btn-primary w-46">
+                <button
+                  type="submit"
+                  className="w-1/2 cursor-pointer bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+                >
                   Apply
                 </button>
                 <button
                   type="button"
                   onClick={handlePreview}
-                  className="btn btn-success w-46 "
+                  className="w-1/2 cursor-pointer bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
                 >
                   Preview
                 </button>
               </>
-            )}
-            {isPending && (
-              <button disabled className="btn btn-primary w-full">
+            ) : (
+              <button
+                disabled
+                className="w-full bg-gray-400 text-white py-2 rounded-lg"
+              >
                 Loading...
               </button>
             )}
@@ -183,9 +242,9 @@ function CreateRecipe() {
       </div>
 
       {(localError || error || message) && (
-        <div className="toast toast-end z-50 fixed top-15 right-5 animate-slideIn">
+        <div className="toast toast-end z-50 fixed top-10 right-5 animate-slideIn">
           <div
-            className={`text-white px-4 py-3 rounded-lg shadow-lg ${
+            className={`text-white px-5 py-3 rounded-lg shadow-lg ${
               localError || error ? "bg-red-500" : "bg-green-500"
             }`}
           >

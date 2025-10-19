@@ -64,7 +64,7 @@ function App() {
     });
   }, []);
 
-  return <>{authReady && <RouterProvider router={routes} />}</>;
+  return <>{authReady && <RouterProvider router={routes} />} </>;
 }
 
 export default App;
