@@ -42,11 +42,9 @@ function RecipeDetails() {
       className="min-h-screen bg-cover bg-center bg-no-repeat py-20 px-6 relative text-gray-200"
      
     >
-      {/* qoraytiruvchi qatlam */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Rasm qismi */}
         <div className="flex flex-wrap gap-4  mb-10">
           {recipe.images?.length > 0 ? (
             recipe.images.map((img, i) => (
@@ -62,12 +60,10 @@ function RecipeDetails() {
           )}
         </div>
 
-        {/* Sarlavha */}
         <h1 className="text-4xl font-extrabold mb-6  bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent tracking-tight">
           {recipe.title}
         </h1>
 
-        {/* Asosiy ma’lumotlar */}
         <div className=" shadow-xl">
           <h2 className="text-2xl font-semibold mb-3 text-gray-100">
             Ingredients:

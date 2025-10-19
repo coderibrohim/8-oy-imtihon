@@ -56,10 +56,9 @@ function CreateRecipe() {
   return (
     <div
       className="min-h-screen flex items-center justify-center 
-      bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1470&q=80')] 
+      bg-[url(/public/sea-1501785888041-af3ef285b470.avif)] 
       bg-cover bg-center bg-no-repeat relative"
     >
-      {/* Overlay gradient for better readability */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
       <div className=" mt-20 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/40">
@@ -68,7 +67,6 @@ function CreateRecipe() {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Title */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700">
               Title
@@ -82,7 +80,6 @@ function CreateRecipe() {
             />
           </div>
 
-          {/* Cook time */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700">
               Cooking Time
@@ -96,7 +93,6 @@ function CreateRecipe() {
             />
           </div>
 
-          {/* Ingredients */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700">
               Ingredients
@@ -118,7 +114,6 @@ function CreateRecipe() {
               </button>
             </div>
 
-            {/* Ingredient list */}
             <div className="mt-3 flex flex-wrap gap-2">
               {ingredients.length ? (
                 ingredients.map((e, i) => (
@@ -148,7 +143,6 @@ function CreateRecipe() {
             </div>
           </div>
 
-          {/* Images */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700">
               Image URLs
@@ -170,7 +164,6 @@ function CreateRecipe() {
               </button>
             </div>
 
-            {/* Image list */}
             <div className="mt-3 flex flex-wrap gap-2">
               {images.length ? (
                 images.map((img, i) => (
@@ -198,7 +191,6 @@ function CreateRecipe() {
             </div>
           </div>
 
-          {/* Method */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700">
               Method
@@ -211,7 +203,6 @@ function CreateRecipe() {
             />
           </div>
 
-          {/* Buttons */}
           <div className="flex gap-3">
             {!isPending ? (
               <>

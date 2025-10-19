@@ -110,12 +110,11 @@ function Home() {
                 </div>
               </div>
 
-              {/* delete button o‘ngda */}
               <div className="absolute top-3 right-3 z-20">
                 <button
                   onClick={(e) => {
-                    e.stopPropagation(); // karta bosilmasin
-                    e.preventDefault(); // sahifa yangilanmasin
+                    e.stopPropagation(); 
+                    e.preventDefault(); 
                     handleDelete(recipe.id);
                   }}
                   className=" btn-xs text-white cursor-pointer transition-all"
